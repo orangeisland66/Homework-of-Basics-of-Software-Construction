@@ -1,0 +1,10 @@
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\bin\Debug\calculate(window).exe.config
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\bin\Debug\calculate(window).exe
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\bin\Debug\calculate(window).pdb
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate(window).csproj.AssemblyReference.cache
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate_window_.Form1.resources
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate_window_.Properties.Resources.resources
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate(window).csproj.GenerateResource.cache
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate(window).csproj.CoreCompileInputs.cache
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate(window).exe
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\calculate(window)\obj\Debug\calculate(window).pdb

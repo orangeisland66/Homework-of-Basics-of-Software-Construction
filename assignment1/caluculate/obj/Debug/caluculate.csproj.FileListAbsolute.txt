@@ -1,0 +1,7 @@
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\bin\Debug\caluculate.exe.config
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\bin\Debug\caluculate.exe
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\bin\Debug\caluculate.pdb
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\obj\Debug\caluculate.csproj.AssemblyReference.cache
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\obj\Debug\caluculate.csproj.CoreCompileInputs.cache
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\obj\Debug\caluculate.exe
+D:\OneDrive\OneDrive - whu.edu.cn\桌面\软件构造基础\caluculate\obj\Debug\caluculate.pdb
