@@ -4,5 +4,5 @@
 **/properties
 **/*.config
 **/*.resx
-**/*.csproj
-**/*.sln
+# **/*.csproj
+# **/*.sln
