@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrderManager;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.EntityFrameworkCore;
 
 namespace WinForm
 {
@@ -16,23 +17,42 @@ namespace WinForm
     {
         private OrderService orderService;
         public BindingSource orderBindingSource;
+        private OrderContext orderContext;
+
         public Form1()
         {
             InitializeComponent();
-            orderService = new OrderService();
+            // 创建数据库上下文实例
+            orderContext = new OrderContext();
+            // 将数据库上下文传递给 OrderService
+            orderService = new OrderService(orderContext);
             orderBindingSource = new BindingSource();
             dataGridView1.DataSource = orderBindingSource;
             dataGridView1.AllowUserToAddRows = false;
             search_comboBox.SelectedIndex = 0;
+            // 初始化时加载所有订单
+            LoadOrders();
+        }
+
+        private void LoadOrders()
+        {
+            try
+            {
+                orderBindingSource.DataSource = orderService.SortOrders();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"加载订单时出错: {ex.Message}");
+            }
         }
 
         private void create_modify_button_Click(object sender, EventArgs e)
         {
-            AddModifyOrderForm form = new AddModifyOrderForm( null, orderService,orderBindingSource);
+            AddModifyOrderForm form = new AddModifyOrderForm(null, orderService, orderBindingSource);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                orderBindingSource.DataSource = orderService.SortOrders();
+                LoadOrders();
             }
         }
 
@@ -44,7 +64,7 @@ namespace WinForm
                 try
                 {
                     orderService.DeleteOrder(orderId);
-                    orderBindingSource.DataSource = orderService.SortOrders();
+                    LoadOrders();
                 }
                 catch (Exception ex)
                 {
@@ -87,12 +107,15 @@ namespace WinForm
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 int orderId = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
-                Order order = orderService.QueryByOrderId(orderId)[0];
-                AddModifyOrderForm form = new AddModifyOrderForm(order, orderService, orderBindingSource);
-
-                if (form.ShowDialog() == DialogResult.OK)
+                Order order = orderService.QueryByOrderId(orderId).FirstOrDefault();
+                if (order != null)
                 {
-                    orderBindingSource.DataSource = orderService.SortOrders();
+                    AddModifyOrderForm form = new AddModifyOrderForm(order, orderService, orderBindingSource);
+
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadOrders();
+                    }
                 }
             }
         }

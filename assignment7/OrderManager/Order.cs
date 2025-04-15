@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 // 订单明细类
 namespace OrderManager
@@ -10,6 +11,7 @@ namespace OrderManager
         public string ProductName { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
+        public Order Order { get; set; }
 
         public OrderDetails(int id, string productName, int quantity, double unitPrice)
         {
@@ -45,13 +47,13 @@ namespace OrderManager
         public int OrderId { get; set; }
         public string Customer { get; set; }
         public List<OrderDetails> OrderDetails { get; set; }
+        //public ICollection<OrderDetail> OrderDetails { get; set; }
+        public double TotalAmount { get; set; }
 
-        public double TotalAmount
+        // 计算总金额的方法
+        public void CalculateTotalAmount()
         {
-            get
-            {
-                return OrderDetails.Sum(d => d.Quantity * d.UnitPrice);
-            }
+            TotalAmount = OrderDetails.Sum(d => d.Quantity * d.UnitPrice);
         }
 
         public Order(int orderId, string customer, List<OrderDetails> orderDetails)
@@ -60,7 +62,9 @@ namespace OrderManager
             Customer = customer;
             OrderDetails = orderDetails;
         }
-
+        public Order()
+        {
+        }
         public override bool Equals(object obj)
         {
             return obj is Order order &&
@@ -78,6 +82,17 @@ namespace OrderManager
         {
             string details = string.Join("\n  ", OrderDetails.Select(d => d.ToString()));
             return $"OrderId: {OrderId}, Customer: {Customer}, TotalAmount: {TotalAmount}\n  {details}";
+        }
+    }
+    public class OrderContext : DbContext
+    {
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string connectionString = "server=localhost;user=root;password=123456;database=orderservice";
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
     }
 }
